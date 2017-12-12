@@ -1,0 +1,32 @@
+@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: green;
+}
+
+.header-style {
+  background-color: darkgrey !important;
+  color: white !important;
+  padding: 20px 60px;
+}
+
+.feed-item {
+  a {
+    padding: 20px 30px;
+  }
+}
+
+.feed-item:hover {
+  .feed-trash {
+    visibility: visible !important;
+  }
+}
+
+.feed-trash {
+  visibility: hidden;
+}
+
+.feed-subtitle {
+  margin-left: 20px;
+}
