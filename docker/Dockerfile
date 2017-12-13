@@ -1,9 +1,7 @@
 FROM node:8
 
-COPY ./ /home/node/app
+COPY ./src /home/node/app
 
 WORKDIR /home/node/app
 
 RUN npm install
-
-RUN npm start

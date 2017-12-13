@@ -6,7 +6,7 @@ var feedsSchema, feedModel;
 function init(){
   mongoose.Promise = require("bluebird");
   mongoose
-    .connect("mongodb://localhost:27017/reignDesign", {
+    .connect("mongodb://mongodb:27017/reignDesign", {
       useMongoClient: true
     })
     .then(
