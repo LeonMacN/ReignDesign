@@ -15,5 +15,5 @@
 > - Update file database.js, change the address for the mongodb connection.
 > - run commands
 	`$ npm install`
-	`$ npm start
+	`$ npm start`
 > - link: http://localhost:3000/
