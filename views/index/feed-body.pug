@@ -1,0 +1,16 @@
+div(class='row')
+  div(class='col-xs-8')
+    if val.story_title
+      a(href=val.story_url target='blank' class='feedTitleAndTime')= val.story_title
+    else
+      a(href=val.url target='blank' class='feedTitleAndTime')= val.title
+    span(class='feedAuthor')=val.author
+  div(class='col-xs-3')
+    if moment(val.created_at).format('MM/DD/YYYY') ==  moment().format('MM/DD/YYYY')
+      span(class='feedTitleAndTime')=moment(val.created_at).format('HH:mm')
+    else if moment().diff(moment(val.created_at), 'days') > 1
+      span(class='feedTitleAndTime')=moment(val.created_at).format('MMM DD')
+    else if moment().diff(moment(val.created_at), 'days') <= 1
+      span(class='feedTitleAndTime')=moment(val.created_at).calendar()
+  div(class='col-xs-1 feed-trash')
+    icon(class='glyphicon glyphicon-trash' onClick="deleteFeed('"+val._id+"')")

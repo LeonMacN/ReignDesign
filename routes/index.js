@@ -2,10 +2,20 @@
 var express = require('express');
 var router = express.Router();
 
+var feedController = require('../controllers/feedController');
+
 // GET: /
 router.get('/', function(req, res) {
-  res.render('index/index', {
-    title: 'Hello, World!'
+  feedController.getFeeds().then(function(data){
+    res.render('index/index', {
+      data: data
+    });
+  });
+});
+
+router.delete('/deleteFeed', function(req, res){
+  feedController.deleteFeed(req.query.id).then(function(resp){
+    res.send(resp);
   });
 });
 

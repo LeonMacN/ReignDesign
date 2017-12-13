@@ -3,34 +3,37 @@ var _ = require('lodash');
 var mongoose = require("mongoose");
 var feedsSchema, feedModel;
 
+function init(){
+  mongoose.Promise = require("bluebird");
+  mongoose
+    .connect("mongodb://localhost:27017/reignDesign", {
+      useMongoClient: true
+    })
+    .then(
+      function(response) {
+        console.log("Mongo Connected!");
+      },
+      function(err) {
+        console.log("Error connecting mongo!");
+      }
+    );
+
+  feedsSchema = mongoose.Schema({
+    created_at: Date,
+    title: String,
+    url: String,
+    author: String,
+    story_id: Number,
+    story_title: String,
+    story_url: String
+  });
+
+  feedModel = mongoose.model("Feed", feedsSchema);
+}
+
+init();
+
 module.exports = {
-  init: function() {
-    mongoose.Promise = require("bluebird");
-    mongoose
-      .connect("mongodb://localhost:32768/reignDesign", {
-        useMongoClient: true
-      })
-      .then(
-        function(response) {
-          console.log("Mongo Connected!");
-        },
-        function(err) {
-          console.log("Error connecting mongo!");
-        }
-      );
-
-    feedsSchema = mongoose.Schema({
-      created_at: Date,
-      title: String,
-      url: String,
-      author: String,
-      story_id: Number,
-      story_title: String,
-      story_url: String
-    });
-
-    feedModel = mongoose.model("Feed", feedsSchema);
-  },
   feedsSchema: function() {
     return feedsSchema;
   },

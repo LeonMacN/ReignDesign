@@ -1,13 +1,23 @@
 extends ../shared/layout.pug
 
 block content
-  div(class='list-group feed-item')
-    a(href='#' class='list-group-item')
-      div(class='row')
-        div(class='col-xs-9')
-          span Title
-          span(class='feed-subtitle') subtitle.....
-        div(class='col-xs-2')
-          span 20/12/2017
-        div(class='col-xs-1 feed-trash')
-          icon(class='glyphicon glyphicon-trash')
+  div(class='list-group')
+    each val in data
+      if val.title !== '' && val.story_title !== ''
+        div(class='list-group-item feed-item')
+          div(class='row')
+            div(class='col-xs-8')
+              if val.story_title
+                a(href=val.story_url target='blank' class='feedTitleAndTime')= val.story_title
+              else
+                a(href=val.url target='blank' class='feedTitleAndTime')= val.title
+              span(class='feedAuthor')=val.author
+            div(class='col-xs-3')
+              if moment(val.created_at).format('MM/DD/YYYY') ==  moment().format('MM/DD/YYYY')
+                span(class='feedTitleAndTime')=moment(val.created_at).format('HH:mm')
+              else if moment().diff(moment(val.created_at), 'days') > 1
+                span(class='feedTitleAndTime')=moment(val.created_at).format('MMM DD')
+              else if moment().diff(moment(val.created_at), 'days') <= 1
+                span(class='feedTitleAndTime')=moment(val.created_at).calendar()
+            div(class='col-xs-1 feed-trash')
+              icon(class='glyphicon glyphicon-trash' onClick="deleteFeed('"+val._id+"')")

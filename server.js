@@ -8,7 +8,6 @@ var logger = require('morgan');
 var cron = require('node-cron');
 var db = require('./database');
 
-db.init();
 db.populateDB();
 var model = db.feedModel();
 
@@ -66,6 +65,8 @@ app.use(function(err, req, res, next) {
     error: ''
   });
 });
+
+app.locals.moment = require('moment');
 
 server.listen(process.env.PORT || 3000);
 module.exports = app;

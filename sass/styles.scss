@@ -2,7 +2,6 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: green;
 }
 
 .header-style {
@@ -12,21 +11,27 @@ body {
 }
 
 .feed-item {
-  a {
-    padding: 20px 30px;
+  padding: 20px 30px;
+  background-color: #fff;
+  border: 1px #ccc !important;
+  .feedTitleAndTime {
+    color: #333;
+    font-size: 13pt;
+  }
+  .feedAuthor {
+    margin-left: 15px;
+    color: #999;
   }
 }
 
 .feed-item:hover {
+  background-color: #fafafa !important;
   .feed-trash {
     visibility: visible !important;
+    cursor: pointer;
   }
 }
 
 .feed-trash {
   visibility: hidden;
-}
-
-.feed-subtitle {
-  margin-left: 20px;
 }
